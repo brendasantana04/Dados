@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/titleText"
@@ -12,48 +10,91 @@
         android:layout_height="wrap_content"
         android:text="Rolar Dados"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/facesInput"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
 
-    <EditText
-        android:id="@+id/facesInput"
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/titleText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp">
+
+        <RadioButton
+            android:id="@+id/radioD4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="D4" />
+
+        <RadioButton
+            android:id="@+id/radioD6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="D6" />
+
+        <RadioButton
+            android:id="@+id/radioD8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="D8" />
+
+        <RadioButton
+            android:id="@+id/radioD10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="D10" />
+
+        <RadioButton
+            android:id="@+id/radioD12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="D12" />
+
+        <RadioButton
+            android:id="@+id/radioD20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="D20" />
+
+        <RadioButton
+            android:id="@+id/radioD100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="D100" />
+    </RadioGroup>
+
+    <Spinner
+        android:id="@+id/spinnerDiceCount"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:hint="Nº de Faces"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radioGroup"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleText" />
-
-    <EditText
-        android:id="@+id/diceInput"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:hint="Nº de Dados"
-        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/facesInput" />
+        android:layout_marginTop="16dp" />
 
     <Button
         android:id="@+id/rollButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Rolar"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerDiceCount"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/diceInput" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
 
     <TextView
         android:id="@+id/resultText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Resultados"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rollButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rollButton" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
 
     <TextView
         android:id="@+id/textView"

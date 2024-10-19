@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Dados</string>
+    <string-array name="dice_count_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
 </resources>

@@ -2,8 +2,11 @@ package com.example.dados;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.Random;
@@ -15,8 +18,8 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText facesInput;
-    private EditText diceInput;
+    private RadioGroup radioGroup;
+    private Spinner spinnerDiceCount;
     private Button rollButton;
     private TextView resultText;
 
@@ -25,10 +28,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        facesInput = findViewById(R.id.facesInput);
-        diceInput = findViewById(R.id.diceInput);
+        radioGroup = findViewById(R.id.radioGroup);
+        spinnerDiceCount = findViewById(R.id.spinnerDiceCount);
         rollButton = findViewById(R.id.rollButton);
         resultText = findViewById(R.id.resultText);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.dice_count_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerDiceCount.setAdapter(adapter);
 
         rollButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,23 +47,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void rollDice() {
-        String facesStr = facesInput.getText().toString();
-        String diceStr = diceInput.getText().toString();
-
-        if (!facesStr.isEmpty() && !diceStr.isEmpty()) {
-            int faces = Integer.parseInt(facesStr);
-            int dice = Integer.parseInt(diceStr);
-            Random random = new Random();
-            StringBuilder results = new StringBuilder("Resultados: ");
-
-            for (int i = 0; i < dice; i++) {
-                int result = random.nextInt(faces) + 1;
-                results.append(result).append(" ");
-            }
-
-            resultText.setText(results.toString());
-        } else {
-            resultText.setText("Por favor, preencha ambos os campos.");
+        int selectedDice = radioGroup.getCheckedRadioButtonId();
+        if (selectedDice == -1) {
+            resultText.setText("Por favor, escolha um tipo de dado.");
+            return;
         }
+
+        RadioButton selectedRadioButton = findViewById(selectedDice);
+        int faces = Integer.parseInt(selectedRadioButton.getText().toString().substring(1));
+        int diceCount = Integer.parseInt(spinnerDiceCount.getSelectedItem().toString());
+
+        Random random = new Random();
+        StringBuilder results = new StringBuilder("Resultados: ");
+
+        for (int i = 0; i < diceCount; i++) {
+            int result = random.nextInt(faces) + 1;
+            results.append(result).append(" ");
+        }
+
+        resultText.setText(results.toString());
     }
 }
